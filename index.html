@@ -1,15 +1,37 @@
-<html>
+<!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Random Wikipedia</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    
-    <button id="randomButton">Press me!</button>
+    <div class="container">
+        <h1>Random wikipedia article</h1>
+        <select id="langSelect">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ja">日本語</option>
+        </select>
+        <button id="RandomButton">Press me!</button>
+
+        <div id="result" class="hidden">
+            <img id="articleImage" class="hidden" alt="">
+            <h2 id="articleTitle"></h2>
+            <p id="articleExtract"></p>
+            <a id="articleLink" href="#" target="_blank">More about it</a>
+            <button id="favButton">Save</button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="history">History</button>
+        <button class="tab-button" data-tab="favorites">Favorites</button>
+    </div>
+    <ul id="historyList" class="side-list"></ul>
+    <ul id="favoritesList" class="side-list hidden"></ul>
 
     <script src="script.js"></script>
 </body>
