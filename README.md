@@ -23,8 +23,9 @@ https://davidperyro-stack.github.io/random-wikipedia-article/
 
 Ive used claude for: Fixing bugs (such as the button goes off screen when the article is big) and adding fun facts and confetti.
 
-## Extra
+# Extra
 
 This project was meant to have 5 hours into it but lack of ideas.
+
 --
 Thanks for visiting! :)
