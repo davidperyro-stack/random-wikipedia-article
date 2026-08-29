@@ -14,14 +14,47 @@ let history = [];
 let viewCount = 0;
 const counterEl = document.getElementById("counter");
 const confettiContainer = document.getElementById("confettiContainer")
+const funfactEl = document.getElementById("funFact");
+
+const funFacts = [
+    "Wikipedia was launched on January 15, 2001.",
+    "The English Wikipedia has over 6.8 million articles.",
+    "Wikipedia is written and edited by volunteers — anyone can contribute.",
+    "The name 'Wikipedia' blends 'wiki' (Hawaiian for 'quick') and 'encyclopedia'.",
+    "The most-edited Wikipedia article of all time is about George W. Bush.",
+    "Wikipedia exists in over 300 languages.",
+    "The Cebuano Wikipedia has millions of articles largely created by bots.",
+    "Wikipedia has no paid editorial staff — it runs on volunteers and donations.",
+    "The Library of Alexandria, one of history's greatest libraries, was gradually lost over centuries.",
+    "The printing press was invented by Johannes Gutenberg around 1440.",
+    "The Great Wall of China isn't a single continuous wall, but many walls built over centuries.",
+    "The shortest war in history lasted about 38 minutes (Anglo-Zanzibar War, 1896).",
+    "Ancient Roman concrete has outlasted much of today's modern concrete.",
+    "The first known encyclopedia dates back to ancient Greece.",
+    "Cleopatra lived closer in time to the Moon landing than to the building of the Great Pyramid.",
+    "Oxford University is older than the Aztec Empire.",
+    "The inventor of the Pringles can is buried in one.",
+    "Napoleon was once attacked by a horde of rabbits during a hunting trip."
+];
+
+function showRandomFunFact() {
+        const fact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    funfactEl.textContent = `${fact}`;
+}
 let favorites = JSON.parse(localStorage.getItem("wikiFavorites") || "[]");
 renderFavorites();
 
-async function fetchRandomArticle() {
+async function fetchRandomArticle(retries = 2) {
     const lang = langSelect.value;
-    const response = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/random/summary`);
-    if (!response.ok) throw new Error("Request failed");
-    return response.json();
+    for (let attempt = 0; attempt <= retries; attempt++) {
+        try {
+            const response = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/random/summary`);
+            if (!response.ok) throw new Error("Request failed");
+            return await response.json();
+        } catch (err) {
+            if (attempt === retries) throw err;
+        }
+    }
 }
 
 async function getValidArticle() {
@@ -77,6 +110,7 @@ function addToHistory(data) {
 
     viewCount++;
     counterEl.textContent = `Articles viewed: ${viewCount}`;
+    showRandomFunFact();
 
     if (viewCount % 10 === 0) {
         celebrateMilestone();
