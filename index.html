@@ -7,31 +7,39 @@
 </head>
 <body>
     <div class="container">
-        <h1>Random wikipedia article</h1>
-        <select id="langSelect">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="ja">日本語</option>
-        </select>
-        <button id="RandomButton">Press me!</button>
+        <h1>Random Wikipedia Article</h1>
+        <p id="counter">Articles viewed: 0</p>
+
+        <div class="controls">
+            <select id="langSelect">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ja">日本語</option>
+            </select>
+            <button id="randomButton">Press me! (R)</button>
+        </div>
 
         <div id="result" class="hidden">
             <img id="articleImage" class="hidden" alt="">
             <h2 id="articleTitle"></h2>
             <p id="articleExtract"></p>
-            <a id="articleLink" href="#" target="_blank">More about it</a>
-            <button id="favButton">Save</button>
+            <div class="result-links">
+                <a id="articleLink" href="#" target="_blank">Read full article →</a>
+                <button id="favButton">Save</button>
+            </div>
         </div>
-    </div>
 
-    <div class="tabs">
-        <button class="tab-button active" data-tab="history">History</button>
-        <button class="tab-button" data-tab="favorites">Favorites</button>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="history">History</button>
+            <button class="tab-button" data-tab="favorites">Favorites</button>
+        </div>
+        <ul id="historyList" class="side-list"></ul>
+        <ul id="favoritesList" class="side-list hidden"></ul>
     </div>
-    <ul id="historyList" class="side-list"></ul>
-    <ul id="favoritesList" class="side-list hidden"></ul>
+    
+    <div id="confettiContainer"></div>
 
     <script src="script.js"></script>
 </body>
